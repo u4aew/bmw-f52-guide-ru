@@ -1,0 +1,1228 @@
+---
+import '../styles/global.css';
+import { Image } from 'astro:assets';
+import introImg from '../assets/intro.png';
+
+const TELEGRAM_CHANNEL = 'https://t.me/bmwf52chat';
+const DRIVE2 = 'https://www.drive2.ru/cars/bmw/1_series/g689165093270727703//';
+const GITHUB = 'https://github.com/u4aew/bmw-f52-guide-ru';
+
+// SEO constants — update SITE_URL after deploy
+const SITE_URL  = 'http://bmw-f52-guide.pro';
+const SITE_NAME = 'BMW F52 — База знаний';
+const SEO_TITLE = 'BMW F52 База знаний — характеристики, обслуживание, двигатели седана BMW 1 Series';
+const SEO_DESC  = 'Подробная база знаний по BMW F52 (1 Series Sedan): технические характеристики, двигатели B38/B48, регламент обслуживания, типичные проблемы, советы по покупке. Седан на платформе UKL2 для китайского рынка.';
+const OG_IMAGE  = `${SITE_URL}/og-image.png`; // создай og-image.png в /public
+---
+
+<!DOCTYPE html>
+<html lang="ru" prefix="og: https://ogp.me/ns#">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+
+  <!-- ── Primary SEO ── -->
+  <title>{SEO_TITLE}</title>
+  <meta name="description" content={SEO_DESC} />
+  <meta name="keywords" content="BMW F52, BMW 1 Series Sedan, BMW F52 характеристики, BMW F52 обслуживание, BMW F52 двигатель, BMW 1 серия седан, UKL2, B38, B48, BMW китайский рынок" />
+  <link rel="canonical" href={SITE_URL} />
+  <meta name="robots" content="index, follow" />
+  <meta name="yandex-verification" content="d13d57f30199bcd8" />
+  <meta name="google-site-verification" content="OqdbNryarP7oWAeMPhew2EPuhG1IktxFSUlMZ3AWM4E" />
+
+  <!-- ── Open Graph ── -->
+  <meta property="og:type"        content="website" />
+  <meta property="og:url"         content={SITE_URL} />
+  <meta property="og:site_name"   content={SITE_NAME} />
+  <meta property="og:title"       content={SEO_TITLE} />
+  <meta property="og:description" content={SEO_DESC} />
+  <meta property="og:image"       content={OG_IMAGE} />
+  <meta property="og:image:width"  content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:locale"      content="ru_RU" />
+
+  <!-- ── Twitter Card ── -->
+  <meta name="twitter:card"        content="summary_large_image" />
+  <meta name="twitter:title"       content={SEO_TITLE} />
+  <meta name="twitter:description" content={SEO_DESC} />
+  <meta name="twitter:image"       content={OG_IMAGE} />
+
+  <!-- ── Favicon ── -->
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+
+  <!-- ── PWA / mobile ── -->
+  <meta name="theme-color" content="#ffffff" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+  <meta name="apple-mobile-web-app-title" content="BMW F52" />
+
+  <!-- ── JSON-LD: WebSite + BreadcrumbList ── -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebSite",
+        "@id": `${SITE_URL}/#website`,
+        "url": SITE_URL,
+        "name": SITE_NAME,
+        "description": SEO_DESC,
+        "inLanguage": "ru-RU",
+        "potentialAction": {
+          "@type": "SearchAction",
+          "target": { "@type": "EntryPoint", "urlTemplate": `${SITE_URL}/guides/example/?q={search_term_string}` },
+          "query-input": "required name=search_term_string"
+        }
+      },
+      {
+        "@type": "WebPage",
+        "@id": `${SITE_URL}/#webpage`,
+        "url": SITE_URL,
+        "name": SEO_TITLE,
+        "description": SEO_DESC,
+        "isPartOf": { "@id": `${SITE_URL}/#website` },
+        "inLanguage": "ru-RU",
+        "about": {
+          "@type": "Car",
+          "name": "BMW 1 Series F52",
+          "brand": { "@type": "Brand", "name": "BMW" },
+          "bodyType": "Sedan",
+          "driveWheelConfiguration": "FrontWheelDriveConfiguration",
+          "vehicleModelDate": "2017"
+        }
+      }
+    ]
+  })} />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&family=Barlow+Condensed:wght@600;700;800&display=swap" rel="stylesheet" />
+
+  <!-- Yandex.Metrika counter -->
+  <script type="text/javascript" is:inline>
+    (function(m,e,t,r,i,k,a){
+      m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+      m[i].l=1*new Date();
+      for(var j=0;j<document.scripts.length;j++){if(document.scripts[j].src===r){return;}}
+      k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
+    })(window,document,'script','https://mc.yandex.ru/metrika/tag.js?id=109450199','ym');
+    ym(109450199,'init',{ssr:true,webvisor:true,clickmap:true,ecommerce:"dataLayer",referrer:document.referrer,url:location.href,accurateTrackBounce:true,trackLinks:true});
+  </script>
+  <noscript><div><img src="https://mc.yandex.ru/watch/109450199" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+  <!-- /Yandex.Metrika counter -->
+
+  <style>
+    /* ─── TOKENS ─── */
+    :root {
+      --bg:           #F7F7F5;
+      --surface:      #FFFFFF;
+      --surface-2:    #F0F0ED;
+      --surface-3:    #E8E8E4;
+      --border:       rgba(0,0,0,0.08);
+      --border-strong:rgba(0,0,0,0.14);
+      --text:         #111114;
+      --text-2:       #6B6B72;
+      --text-3:       #AEAEB8;
+      --blue:         #1C69D4;
+      --blue-2:       #4585E0;
+      --blue-light:   rgba(28,105,212,0.08);
+      --blue-mid:     rgba(28,105,212,0.15);
+      --tg:           #229ED9;
+      --d2:           #E8352A;
+      --gh:           #24292F;
+      --shadow-sm:    0 1px 3px rgba(0,0,0,0.08), 0 1px 2px rgba(0,0,0,0.05);
+      --shadow-md:    0 4px 16px rgba(0,0,0,0.08), 0 2px 6px rgba(0,0,0,0.05);
+      --shadow-lg:    0 12px 40px rgba(0,0,0,0.1), 0 4px 12px rgba(0,0,0,0.06);
+      --r-sm:         10px;
+      --r-md:         16px;
+      --r-lg:         22px;
+      --r-xl:         28px;
+      --tab-h:        72px;
+    }
+
+    /* ─── RESET ─── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'DM Sans', sans-serif;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* ─── PAGE ENTRY ANIMATION ─── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(18px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .anim { animation: fadeUp 0.5s cubic-bezier(0.22,1,0.36,1) both; }
+    .anim-1 { animation-delay: 0.05s; }
+    .anim-2 { animation-delay: 0.12s; }
+    .anim-3 { animation-delay: 0.20s; }
+    .anim-4 { animation-delay: 0.28s; }
+    .anim-5 { animation-delay: 0.36s; }
+    .anim-6 { animation-delay: 0.44s; }
+
+    /* ─── NAV ─── */
+    nav.top-nav {
+      position: sticky;
+      top: 0;
+      z-index: 200;
+      background: rgba(247,247,245,0.88);
+      backdrop-filter: blur(16px) saturate(180%);
+      -webkit-backdrop-filter: blur(16px) saturate(180%);
+      border-bottom: 1px solid var(--border);
+      padding: 0 20px;
+      height: 58px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      text-decoration: none;
+    }
+
+    .roundel {
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      border: 2px solid var(--blue);
+      position: relative;
+      overflow: hidden;
+      flex-shrink: 0;
+    }
+
+    .roundel::before, .roundel::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+    }
+
+    .roundel::before {
+      background: linear-gradient(135deg, var(--blue) 50%, transparent 50%);
+    }
+
+    .roundel::after {
+      inset: 4px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--bg) 50%, var(--blue) 50%);
+    }
+
+    .nav-wordmark {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: 15px;
+      color: var(--text);
+      letter-spacing: 0.01em;
+    }
+
+    .nav-wordmark em {
+      font-style: normal;
+      color: var(--blue);
+    }
+
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .nav-link {
+      font-size: 13.5px;
+      font-weight: 500;
+      color: var(--text-2);
+      text-decoration: none;
+      padding: 6px 11px;
+      border-radius: 8px;
+      transition: background 0.14s, color 0.14s;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .nav-link:hover { background: var(--surface-2); color: var(--text); }
+
+    .nav-link svg { width: 14px; height: 14px; }
+
+    .nav-cta {
+      font-size: 13px;
+      font-weight: 600;
+      color: #fff;
+      background: var(--blue);
+      padding: 7px 14px;
+      border-radius: 9px;
+      text-decoration: none;
+      transition: opacity 0.14s, transform 0.14s;
+      box-shadow: 0 2px 8px rgba(28,105,212,0.28);
+    }
+
+    .nav-cta:hover { opacity: 0.88; transform: translateY(-1px); }
+
+    /* ─── WRAP ─── */
+    .page {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 0 20px;
+      /* bottom space for mobile tab bar */
+      padding-bottom: calc(var(--tab-h) + env(safe-area-inset-bottom, 0px) + 16px);
+    }
+
+    @media (min-width: 769px) {
+      .page { padding-bottom: 0; }
+    }
+
+    /* ─── HERO ─── */
+    .hero {
+      padding: 36px 0 48px;
+    }
+
+    /* Hero card — text only */
+    .hero-card {
+      border-radius: var(--r-xl);
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow-md);
+      overflow: hidden;
+      background: var(--surface);
+      padding: 48px 52px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Standalone image block */
+    .hero-visual {
+      margin-top: 16px;
+      border-radius: var(--r-xl);
+      overflow: hidden;
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow-md);
+      background: #0d1a35;
+    }
+
+    .hero-visual img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .hero-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      font-size: 10.5px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--blue);
+      margin-bottom: 16px;
+    }
+
+    .hero-eyebrow-dot {
+      width: 5px; height: 5px;
+      background: var(--blue);
+      border-radius: 50%;
+      flex-shrink: 0;
+      animation: blink 2.4s ease-in-out infinite;
+    }
+
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50%       { opacity: 0.35; }
+    }
+
+    .hero h1 {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(30px, 4vw, 52px);
+      font-weight: 800;
+      line-height: 1.07;
+      letter-spacing: -0.04em;
+      color: var(--text);
+      margin-bottom: 14px;
+    }
+
+    .hero h1 .blue { color: var(--blue); }
+
+    .hero-sub {
+      font-size: 14.5px;
+      line-height: 1.7;
+      color: var(--text-2);
+      font-weight: 300;
+      margin-bottom: 22px;
+    }
+
+    /* stat chips */
+    .hero-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: 28px;
+    }
+
+    .chip {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 11.5px;
+      font-weight: 700;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      color: var(--text-2);
+      background: var(--surface-2);
+      border: 1px solid var(--border);
+      padding: 4px 11px;
+      border-radius: 100px;
+    }
+
+    .chip-blue {
+      color: var(--blue);
+      background: var(--blue-light);
+      border-color: var(--blue-mid);
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 14px;
+      font-weight: 600;
+      padding: 11px 20px;
+      border-radius: 11px;
+      text-decoration: none;
+      transition: transform 0.14s, box-shadow 0.14s, opacity 0.14s;
+    }
+
+    .btn-blue {
+      background: var(--blue);
+      color: #fff;
+      box-shadow: 0 2px 10px rgba(28,105,212,0.3), 0 1px 3px rgba(28,105,212,0.2);
+    }
+
+    .btn-blue:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 6px 20px rgba(28,105,212,0.35), 0 2px 6px rgba(28,105,212,0.2);
+    }
+
+    .btn-ghost {
+      background: var(--surface);
+      color: var(--text);
+      border: 1px solid var(--border-strong);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .btn-ghost:hover { background: var(--surface-2); transform: translateY(-1px); }
+
+    .btn svg { width: 15px; height: 15px; }
+
+
+    /* ─── SECTION LABEL ─── */
+    .sec-label {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin: 44px 0 20px;
+    }
+
+    .sec-label-text {
+      font-size: 10.5px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text-3);
+      white-space: nowrap;
+    }
+
+    .sec-label-line {
+      flex: 1;
+      height: 1px;
+      background: var(--border);
+    }
+
+    /* ─── COMMUNITY ─── */
+    .community-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+    }
+
+    .community-card {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 10px;
+      padding: 18px 16px 16px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--r-md);
+      text-decoration: none;
+      transition: box-shadow 0.16s, transform 0.16s, border-color 0.16s;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .community-card:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-md);
+      border-color: var(--border-strong);
+    }
+
+    .c-icon {
+      width: 40px; height: 40px;
+      border-radius: 12px;
+      display: grid;
+      place-items: center;
+      flex-shrink: 0;
+    }
+
+    .c-icon svg { width: 20px; height: 20px; }
+
+    .c-icon-tg  { background: rgba(34,158,217,0.12); color: var(--tg); }
+    .c-icon-d2  { background: rgba(232,53,42,0.10);  color: var(--d2); }
+    .c-icon-gh  { background: rgba(36,41,47,0.08);   color: var(--gh); }
+
+    .c-title {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text);
+      line-height: 1.3;
+    }
+
+    .c-desc {
+      font-size: 12px;
+      color: var(--text-2);
+      font-weight: 300;
+      line-height: 1.5;
+    }
+
+    .c-arrow {
+      margin-top: auto;
+      font-size: 11px;
+      color: var(--text-3);
+      font-weight: 500;
+      align-self: flex-end;
+    }
+
+    /* ─── DOCS SECTIONS GRID ─── */
+    .docs-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+    }
+
+    .doc-card {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      padding: 20px 16px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--r-md);
+      text-decoration: none;
+      position: relative;
+      overflow: hidden;
+      transition: box-shadow 0.16s, transform 0.16s, border-color 0.16s;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .doc-card::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, var(--blue-light) 0%, transparent 60%);
+      opacity: 0;
+      transition: opacity 0.16s;
+    }
+
+    .doc-card:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-md);
+      border-color: rgba(28,105,212,0.2);
+    }
+
+    .doc-card:hover::after { opacity: 1; }
+
+    .doc-icon {
+      width: 38px; height: 38px;
+      background: var(--surface-2);
+      border-radius: 10px;
+      display: grid;
+      place-items: center;
+      flex-shrink: 0;
+      position: relative;
+      z-index: 1;
+    }
+
+    .doc-icon svg { width: 17px; height: 17px; color: var(--blue); }
+
+    .doc-title {
+      font-family: 'Syne', sans-serif;
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--text);
+      letter-spacing: -0.01em;
+      position: relative;
+      z-index: 1;
+    }
+
+    .doc-desc {
+      font-size: 12.5px;
+      color: var(--text-2);
+      line-height: 1.55;
+      font-weight: 300;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* ─── FOOTER ─── */
+    .footer {
+      border-top: 1px solid var(--border);
+      margin-top: 56px;
+      padding: 28px 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .footer-note {
+      font-size: 12px;
+      color: var(--text-3);
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 14px;
+    }
+
+    .footer-links a {
+      font-size: 12px;
+      color: var(--text-3);
+      text-decoration: none;
+      transition: color 0.14s;
+    }
+
+    .footer-links a:hover { color: var(--text-2); }
+
+    /* hero mobile logo (shown instead of top nav) */
+    .hero-mobile-logo {
+      display: none;
+    }
+
+    /* ─────────────────────────────────────────────
+       MOBILE — App-like layout
+    ───────────────────────────────────────────── */
+    @media (max-width: 768px) {
+
+      /* ── Скрываем весь верхний nav на мобиле ── */
+      nav.top-nav { display: none; }
+
+      /* ── Логотип переезжает в hero ── */
+      .hero-mobile-logo {
+        display: flex;
+        align-items: center;
+        gap: 9px;
+        text-decoration: none;
+        margin-bottom: 20px;
+      }
+
+      .hero { padding: 16px 0 24px; }
+
+      .hero-card {
+        padding: 24px 20px 28px;
+        border-radius: var(--r-lg);
+      }
+
+      .hero-visual { border-radius: var(--r-lg); }
+
+      .hero h1 { font-size: 28px; }
+      .hero-sub { font-size: 13.5px; margin-bottom: 16px; }
+      .hero-chips { margin-bottom: 20px; }
+      .hero-actions { gap: 8px; }
+      .btn { font-size: 13.5px; padding: 10px 18px; }
+
+      .community-grid { grid-template-columns: 1fr 1fr; gap: 8px; }
+      /* GitHub goes full-width on mobile */
+      .community-card:last-child { grid-column: 1 / -1; flex-direction: row; align-items: center; }
+      .community-card:last-child .c-arrow { align-self: center; margin-top: 0; margin-left: auto; }
+
+      /* Docs sections: single column list */
+      .docs-grid {
+        grid-template-columns: 1fr;
+        gap: 1px;
+        background: var(--border);
+        border-radius: var(--r-md);
+        overflow: hidden;
+        border: 1px solid var(--border);
+      }
+
+      .doc-card {
+        flex-direction: row;
+        align-items: center;
+        border-radius: 0;
+        border: none;
+        box-shadow: none;
+        padding: 14px 16px;
+        gap: 12px;
+      }
+
+      .doc-card::after { display: none; }
+      .doc-card:hover { transform: none; box-shadow: none; }
+
+      .doc-card-content { flex: 1; }
+      .doc-title { font-size: 14px; margin-bottom: 2px; }
+      .doc-desc { font-size: 12px; }
+
+      .doc-card-arrow {
+        display: flex;
+        color: var(--text-3);
+        flex-shrink: 0;
+      }
+
+      .doc-card-arrow svg { width: 16px; height: 16px; }
+
+      footer { margin-top: 32px; }
+    }
+
+    /* ─── SEO TEXT SECTION ─── */
+    .seo-section {
+      margin-top: 16px;
+      display: grid;
+      grid-template-columns: 1fr 260px;
+      gap: 0;
+      border: 1px solid var(--border);
+      border-radius: var(--r-xl);
+      overflow: hidden;
+      background: var(--surface);
+    }
+
+    .seo-main {
+      padding: 36px 40px;
+      border-right: 1px solid var(--border);
+    }
+
+    .seo-main h2 {
+      font-family: 'Syne', sans-serif;
+      font-size: 17px;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      color: var(--text);
+      margin-bottom: 12px;
+    }
+
+    .seo-main p {
+      font-size: 14px;
+      line-height: 1.75;
+      color: var(--text-2);
+      font-weight: 300;
+    }
+
+    .seo-main p + p { margin-top: 10px; }
+
+    .seo-facts {
+      padding: 36px 28px;
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+
+    .seo-fact-label {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text-3);
+      margin-bottom: 2px;
+    }
+
+    .seo-fact-value {
+      font-size: 13.5px;
+      font-weight: 500;
+      color: var(--text);
+    }
+
+    @media (max-width: 768px) {
+      .seo-section {
+        grid-template-columns: 1fr;
+        border-radius: var(--r-lg);
+      }
+      .seo-main {
+        padding: 24px 20px;
+        border-right: none;
+        border-bottom: 1px solid var(--border);
+      }
+      .seo-facts {
+        padding: 20px;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 16px;
+      }
+    }
+
+    /* ─── BOTTOM TAB BAR (mobile only) ─── */
+    .tab-bar {
+      display: none;
+    }
+
+    @media (max-width: 768px) {
+      .tab-bar {
+        display: flex;
+        position: fixed;
+        bottom: 0; left: 0; right: 0;
+        z-index: 300;
+        background: rgba(255,255,255,0.92);
+        backdrop-filter: blur(20px) saturate(180%);
+        -webkit-backdrop-filter: blur(20px) saturate(180%);
+        border-top: 1px solid var(--border);
+        padding-bottom: env(safe-area-inset-bottom, 0px);
+        box-shadow: 0 -4px 24px rgba(0,0,0,0.08);
+      }
+
+      .tab-item {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 4px;
+        padding: 10px 4px;
+        text-decoration: none;
+        color: var(--text-3);
+        transition: color 0.14s;
+        min-height: var(--tab-h);
+      }
+
+      .tab-item:hover, .tab-item.active { color: var(--blue); }
+
+      .tab-item-tg:hover, .tab-item-tg.active  { color: var(--tg); }
+      .tab-item-d2:hover, .tab-item-d2.active  { color: var(--d2); }
+      .tab-item-gh:hover,  .tab-item-gh.active  { color: var(--gh); }
+
+      .tab-icon {
+        width: 24px; height: 24px;
+        display: grid;
+        place-items: center;
+      }
+
+      .tab-icon svg { width: 22px; height: 22px; }
+
+      .tab-label {
+        font-size: 10px;
+        font-weight: 600;
+        letter-spacing: 0.02em;
+      }
+    }
+
+    /* ─── LARGE SCREENS: hide mobile-only ─── */
+    @media (min-width: 769px) {
+      .mobile-only { display: none; }
+    }
+
+    /* ─── RESPONSIVE: 2-col docs on medium ─── */
+    @media (max-width: 640px) and (min-width: 0px) {
+      .community-grid { grid-template-columns: 1fr; }
+      .community-card:last-child { grid-column: auto; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ═══ NAV (desktop only) ═══ -->
+  <nav class="top-nav anim">
+    <a href="/" class="nav-logo">
+      <div class="roundel"></div>
+      <span class="nav-wordmark">BMW <em>F52</em></span>
+    </a>
+    <div class="nav-right nav-desktop">
+      <a href={TELEGRAM_CHANNEL} target="_blank" rel="noopener" class="nav-link">
+        <svg viewBox="0 0 24 24" fill="currentColor">
+          <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.221-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.447 1.394c-.16.16-.295.295-.605.295l.213-3.053 5.56-5.023c.242-.213-.054-.333-.373-.12L8.32 13.617l-2.96-.924c-.643-.204-.657-.643.136-.953l11.57-4.461c.537-.194 1.006.131.828.942z"/>
+        </svg>
+        Telegram
+      </a>
+      <a href={DRIVE2} target="_blank" rel="noopener" class="nav-link">
+        <svg viewBox="0 0 24 24" fill="currentColor">
+          <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14H9V8h2v8zm4 0h-2V8h2v8z"/>
+        </svg>
+        Drive2
+      </a>
+      <a href={GITHUB} target="_blank" rel="noopener" class="nav-link">
+        <svg viewBox="0 0 24 24" fill="currentColor">
+          <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/>
+        </svg>
+        GitHub
+      </a>
+      <a href="/guides/example/" class="nav-cta">База знаний</a>
+    </div>
+    <!-- mobile: top nav shows only logo (navigation via bottom tab bar) -->
+  </nav>
+
+  <!-- ═══ PAGE ═══ -->
+  <div class="page">
+
+    <!-- ── HERO ── -->
+    <section class="hero">
+
+      <!-- Логотип только на мобиле (вместо скрытого top nav) -->
+      <a href="/" class="hero-mobile-logo anim anim-1">
+        <div class="roundel"></div>
+        <span class="nav-wordmark">BMW <em>F52</em></span>
+      </a>
+
+      <!-- Text card -->
+      <div class="hero-card anim anim-2">
+        <div class="hero-eyebrow">
+          <span class="hero-eyebrow-dot"></span>
+          BMW 1 Series · F52 · Sedan
+        </div>
+
+        <h1>
+          Всё о <span class="blue">BMW&nbsp;F52</span><br />в одном месте
+        </h1>
+
+        <p class="hero-sub">
+          Характеристики, двигатели, обслуживание и типичные
+          проблемы седана BMW 1-й серии. Пополняется живым опытом владельцев.
+        </p>
+
+        <div class="hero-chips">
+          <span class="chip chip-blue">F52</span>
+          <span class="chip">2017–н.в.</span>
+          <span class="chip">FWD</span>
+          <span class="chip">1 Серия</span>
+        </div>
+
+        <div class="hero-actions">
+          <a href="/guides/example/" class="btn btn-blue">
+            Начать читать
+            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M3 8h10M9 4l4 4-4 4"/>
+            </svg>
+          </a>
+          <a href="/specs/" class="btn btn-ghost">
+            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="2,12 6,7 10,10 14,4"/>
+            </svg>
+            Характеристики
+          </a>
+        </div>
+      </div>
+
+      <!-- Standalone spec image -->
+      <div class="hero-visual anim anim-3">
+        <Image
+          src={introImg}
+          alt="BMW F52 — технический паспорт, размеры и характеристики"
+          format="webp"
+          quality={85}
+          loading="eager"
+          fetchpriority="high"
+          decoding="async"
+        />
+      </div>
+
+      <!-- SEO text + facts -->
+      <div class="seo-section anim anim-4">
+        <div class="seo-main">
+          <h2>Что такое BMW F52</h2>
+          <p>
+            BMW F52 — четырёхдверный компактный седан, выпускавшийся с 2017 по 2023 год.
+            Модель была разработана на совместном предприятии BMW Brilliance в Шэньяне
+            изначально для китайского рынка, но позже официально продавалась и в Мексике.
+            В отличие от классических европейских хэтчбеков 1-й серии тех лет, F52 получил
+            кузов седан, увеличенную колёсную базу и просторный багажник.
+          </p>
+          <p>
+            Автомобиль построен на модульной переднеприводной платформе BMW UKL2 с поперечным
+            расположением двигателя — той же, что лежит в основе MINI Countryman (F60),
+            BMW X1 (F48) и BMW X2 (F39).
+          </p>
+          <p>
+            Линейка двигателей включает трёхцилиндровый турбомотор B38 объёмом 1,5 л и
+            четырёхцилиндровый B48 объёмом 2,0 л. В зависимости от года выпуска и мотора,
+            автомобили оснащались 6- или 8-ступенчатым автоматом Aisin, а после рестайлинга —
+            7-ступенчатым «роботом» с двойным сцеплением (7DCT).
+          </p>
+        </div>
+        <div class="seo-facts">
+          <div>
+            <div class="seo-fact-label">Платформа</div>
+            <div class="seo-fact-value">BMW UKL2</div>
+          </div>
+          <div>
+            <div class="seo-fact-label">Кузов</div>
+            <div class="seo-fact-value">Седан, 4 двери</div>
+          </div>
+          <div>
+            <div class="seo-fact-label">Рынок</div>
+            <div class="seo-fact-value">Китай, Мексика</div>
+          </div>
+          <div>
+            <div class="seo-fact-label">Производство</div>
+            <div class="seo-fact-value">2017 — 2023, Шэньян</div>
+          </div>
+          <div>
+            <div class="seo-fact-label">Двигатели</div>
+            <div class="seo-fact-value">B38 (1.5T) / B48 (2.0T)</div>
+          </div>
+          <div>
+            <div class="seo-fact-label">Привод</div>
+            <div class="seo-fact-value">Передний (FWD)</div>
+          </div>
+          <div>
+            <div class="seo-fact-label">Трансмиссия</div>
+            <div class="seo-fact-value">6AT / 8AT (Aisin), 7DCT</div>
+          </div>
+          <div>
+            <div class="seo-fact-label">Код кузова</div>
+            <div class="seo-fact-value">F52</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── COMMUNITY ── -->
+    <div class="sec-label anim anim-5">
+      <span class="sec-label-text">Сообщество</span>
+      <div class="sec-label-line"></div>
+    </div>
+
+    <div class="community-grid anim anim-6">
+      <!-- Telegram Channel -->
+      <a href={TELEGRAM_CHANNEL} target="_blank" rel="noopener" class="community-card">
+        <div class="c-icon c-icon-tg">
+          <svg viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.221-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.447 1.394c-.16.16-.295.295-.605.295l.213-3.053 5.56-5.023c.242-.213-.054-.333-.373-.12L8.32 13.617l-2.96-.924c-.643-.204-.657-.643.136-.953l11.57-4.461c.537-.194 1.006.131.828.942z"/>
+          </svg>
+        </div>
+        <div>
+          <div class="c-title">Telegram канал</div>
+          <div class="c-desc">Новости, статьи, обновления базы знаний</div>
+        </div>
+        <span class="c-arrow">→</span>
+      </a>
+
+      <!-- Drive2 -->
+      <a href={DRIVE2} target="_blank" rel="noopener" class="community-card">
+        <div class="c-icon c-icon-d2">
+          <!-- Drive2 logo mark -->
+          <svg viewBox="0 0 24 24" fill="currentColor">
+            <path d="M4 4h7.5C14.5 4 17 6 17 9s-2.5 5-5.5 5H7v6H4V4zm3 7.5h4c1.4 0 2.5-1 2.5-2.5S12.4 6.5 11 6.5H7v5zM18 4h2v16h-2V4z"/>
+          </svg>
+        </div>
+        <div>
+          <div class="c-title">Drive2</div>
+          <div class="c-desc">Бортовые журналы, живой опыт владельцев F52</div>
+        </div>
+        <span class="c-arrow">→</span>
+      </a>
+
+      <!-- GitHub -->
+      <a href={GITHUB} target="_blank" rel="noopener" class="community-card">
+        <div class="c-icon c-icon-gh">
+          <svg viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/>
+          </svg>
+        </div>
+        <div>
+          <div class="c-title">GitHub</div>
+          <div class="c-desc">Исходники сайта, предложи правку через PR</div>
+        </div>
+        <span class="c-arrow">→</span>
+      </a>
+    </div>
+
+    <!-- ── DOCS SECTIONS ── -->
+    <div class="sec-label anim anim-6" style="margin-top: 36px;">
+      <span class="sec-label-text">Разделы</span>
+      <div class="sec-label-line"></div>
+    </div>
+
+    <div class="docs-grid">
+      <!-- Характеристики -->
+      <a href="/specs/" class="doc-card">
+        <div class="doc-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
+          </svg>
+        </div>
+        <div class="doc-card-content">
+          <div class="doc-title">Характеристики</div>
+          <div class="doc-desc">Размеры, масса, динамика, трансмиссия</div>
+        </div>
+        <span class="doc-card-arrow mobile-only">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="9 18 15 12 9 6"/>
+          </svg>
+        </span>
+      </a>
+
+      <!-- Двигатели -->
+      <a href="/engines/" class="doc-card">
+        <div class="doc-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="3" width="18" height="18" rx="3"/>
+            <circle cx="12" cy="12" r="3"/>
+            <path d="M12 3v3M12 18v3M3 12h3M18 12h3"/>
+          </svg>
+        </div>
+        <div class="doc-card-content">
+          <div class="doc-title">Двигатели</div>
+          <div class="doc-desc">B38/B48 — ресурс, масло, проблемы</div>
+        </div>
+        <span class="doc-card-arrow mobile-only">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="9 18 15 12 9 6"/>
+          </svg>
+        </span>
+      </a>
+
+      <!-- Обслуживание -->
+      <a href="/maintenance/" class="doc-card">
+        <div class="doc-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/>
+          </svg>
+        </div>
+        <div class="doc-card-content">
+          <div class="doc-title">Обслуживание</div>
+          <div class="doc-desc">Регламент, интервалы, допуски масел</div>
+        </div>
+        <span class="doc-card-arrow mobile-only">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="9 18 15 12 9 6"/>
+          </svg>
+        </span>
+      </a>
+
+      <!-- Вопросы -->
+      <a href="/questions/" class="doc-card">
+        <div class="doc-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"/>
+            <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/>
+            <line x1="12" y1="17" x2="12.01" y2="17"/>
+          </svg>
+        </div>
+        <div class="doc-card-content">
+          <div class="doc-title">Популярные вопросы</div>
+          <div class="doc-desc">Масло, расход, обслуживание, покупка</div>
+        </div>
+        <span class="doc-card-arrow mobile-only">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="9 18 15 12 9 6"/>
+          </svg>
+        </span>
+      </a>
+
+      <!-- Покупка -->
+      <a href="/buying/" class="doc-card">
+        <div class="doc-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/>
+            <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/>
+          </svg>
+        </div>
+        <div class="doc-card-content">
+          <div class="doc-title">Покупка</div>
+          <div class="doc-desc">На что смотреть при выборе б/у F52</div>
+        </div>
+        <span class="doc-card-arrow mobile-only">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="9 18 15 12 9 6"/>
+          </svg>
+        </span>
+      </a>
+
+      <!-- Тюнинг -->
+      <a href="/tuning/" class="doc-card">
+        <div class="doc-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="3"/>
+            <path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/>
+          </svg>
+        </div>
+        <div class="doc-card-content">
+          <div class="doc-title">Тюнинг и допы</div>
+          <div class="doc-desc">Доработки, прошивки, улучшения</div>
+        </div>
+        <span class="doc-card-arrow mobile-only">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="9 18 15 12 9 6"/>
+          </svg>
+        </span>
+      </a>
+    </div>
+
+    <!-- ── FOOTER ── -->
+    <footer class="footer">
+      <span class="footer-note">BMW F52 база знаний · Не аффилировано с BMW AG</span>
+      <div class="footer-links">
+        <a href={TELEGRAM_CHANNEL} target="_blank" rel="noopener">Telegram</a>
+        <a href={DRIVE2} target="_blank" rel="noopener">Drive2</a>
+        <a href={GITHUB} target="_blank" rel="noopener">GitHub</a>
+        <a href="/guides/example/">Docs</a>
+      </div>
+    </footer>
+
+  </div><!-- /page -->
+
+  <!-- ═══ BOTTOM TAB BAR (mobile only) ═══ -->
+  <nav class="tab-bar" aria-label="Основная навигация">
+    <a href="/guides/example/" class="tab-item active">
+      <span class="tab-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/>
+          <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/>
+        </svg>
+      </span>
+      <span class="tab-label">База знаний</span>
+    </a>
+
+    <a href={TELEGRAM_CHANNEL} target="_blank" rel="noopener" class="tab-item tab-item-tg">
+      <span class="tab-icon">
+        <svg viewBox="0 0 24 24" fill="currentColor">
+          <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.221-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.447 1.394c-.16.16-.295.295-.605.295l.213-3.053 5.56-5.023c.242-.213-.054-.333-.373-.12L8.32 13.617l-2.96-.924c-.643-.204-.657-.643.136-.953l11.57-4.461c.537-.194 1.006.131.828.942z"/>
+        </svg>
+      </span>
+      <span class="tab-label">Канал</span>
+    </a>
+
+    <a href={DRIVE2} target="_blank" rel="noopener" class="tab-item tab-item-d2">
+      <span class="tab-icon">
+        <svg viewBox="0 0 24 24" fill="currentColor">
+          <path d="M4 4h7.5C14.5 4 17 6 17 9s-2.5 5-5.5 5H7v6H4V4zm3 7.5h4c1.4 0 2.5-1 2.5-2.5S12.4 6.5 11 6.5H7v5zM18 4h2v16h-2V4z"/>
+        </svg>
+      </span>
+      <span class="tab-label">Drive2</span>
+    </a>
+
+    <a href={GITHUB} target="_blank" rel="noopener" class="tab-item tab-item-gh">
+      <span class="tab-icon">
+        <svg viewBox="0 0 24 24" fill="currentColor">
+          <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/>
+        </svg>
+      </span>
+      <span class="tab-label">GitHub</span>
+    </a>
+  </nav>
+
+</body>
+</html>

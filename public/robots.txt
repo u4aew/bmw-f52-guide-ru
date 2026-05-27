@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: http://bmw-f52-guide.pro/sitemap.xml
