@@ -1,49 +1,61 @@
-# Starlight Starter Kit: Basics
+# BMW F52 — База знаний
 
-[![Built with Starlight](https://astro.badg.es/v2/built-with-starlight/tiny.svg)](https://starlight.astro.build)
+Открытая база знаний по BMW 1 Series F52 (седан). Характеристики, двигатели, регламент обслуживания, популярные вопросы, советы по покупке.
+
+🌐 **[bmw-f52-guide.pro](http://bmw-f52-guide.pro)**
+
+---
+
+## Сообщество
+
+| | |
+|---|---|
+| 💬 Telegram чат | [@bmwf52chat](https://t.me/bmwf52chat) |
+| 🚗 Drive2 | [Бортовые журналы F52](https://www.drive2.ru/cars/bmw/1_series/g689165093270727703//) |
+| ⭐ GitHub | [u4aew/bmw-f52-guide-ru](https://github.com/u4aew/bmw-f52-guide-ru) |
+
+---
+
+## Разделы
+
+- **Характеристики** — размеры, масса, динамика, трансмиссия
+- **Двигатели** — B38 (1.5T) / B48 (2.0T), ресурс, масло, проблемы
+- **Обслуживание** — полный регламент ТО от 5 000 до 300 000 км
+- **Вопросы** — ответы на частые вопросы владельцев
+- **Покупка** — на что смотреть при выборе б/у F52
+- **Тюнинг** — доработки, прошивки, улучшения
+
+---
+
+## Стек
+
+- [Astro](https://astro.build) + [Starlight](https://starlight.astro.build)
+- [Tailwind CSS v4](https://tailwindcss.com)
+- Деплой: rsync → VPS (nginx, Ubuntu 24.04)
+
+## Локальный запуск
+
+```bash
+npm install
+npm run dev       # http://localhost:4321
+npm run build     # сборка в ./dist/
+npm run deploy    # сборка + деплой на сервер (нужен .env)
+```
+
+`.env` для деплоя:
 
 ```
-npm create astro@latest -- --template starlight
+VPS_HOST=...
+VPS_USER=...
+VPS_PASSWORD=...
 ```
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+---
 
-## 🚀 Project Structure
+## Участие
 
-Inside of your Astro + Starlight project, you'll see the following folders and files:
+Нашёл ошибку или хочешь дополнить? Открывай [issue](https://github.com/u4aew/bmw-f52-guide-ru/issues) или присылай PR. Все правки приветствуются.
 
-```
-.
-├── public/
-├── src/
-│   ├── assets/
-│   ├── content/
-│   │   └── docs/
-│   └── content.config.ts
-├── astro.config.mjs
-├── package.json
-└── tsconfig.json
-```
+---
 
-Starlight looks for `.md` or `.mdx` files in the `src/content/docs/` directory. Each file is exposed as a route based on its file name.
-
-Images can be added to `src/assets/` and embedded in Markdown with a relative link.
-
-Static assets, like favicons, can be placed in the `public/` directory.
-
-## 🧞 Commands
-
-All commands are run from the root of the project, from a terminal:
-
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
-
-## 👀 Want to learn more?
-
-Check out [Starlight’s docs](https://starlight.astro.build/), read [the Astro documentation](https://docs.astro.build), or jump into the [Astro Discord server](https://astro.build/chat).
+> Проект не аффилирован с BMW AG. Информация носит справочный характер.

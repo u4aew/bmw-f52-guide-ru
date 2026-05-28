@@ -8,11 +8,11 @@ const DRIVE2 = 'https://www.drive2.ru/cars/bmw/1_series/g689165093270727703//';
 const GITHUB = 'https://github.com/u4aew/bmw-f52-guide-ru';
 
 // SEO constants — update SITE_URL after deploy
-const SITE_URL  = 'http://bmw-f52-guide.pro';
+const SITE_URL  = 'https://bmw-f52-guide.pro';
 const SITE_NAME = 'BMW F52 — База знаний';
 const SEO_TITLE = 'BMW F52 База знаний — характеристики, обслуживание, двигатели седана BMW 1 Series';
 const SEO_DESC  = 'Подробная база знаний по BMW F52 (1 Series Sedan): технические характеристики, двигатели B38/B48, регламент обслуживания, типичные проблемы, советы по покупке. Седан на платформе UKL2 для китайского рынка.';
-const OG_IMAGE  = `${SITE_URL}/og-image.png`; // создай og-image.png в /public
+const OG_IMAGE  = `${SITE_URL}/og-image.jpg`;
 ---
 
 <!DOCTYPE html>
@@ -113,6 +113,23 @@ const OG_IMAGE  = `${SITE_URL}/og-image.png`; // создай og-image.png в /p
   <!-- /Yandex.Metrika counter -->
 
   <style>
+    /* ─── BETA BANNER ─── */
+    .beta-banner {
+      background: #1a3a6b;
+      color: rgba(255,255,255,0.9);
+      font-size: 13.5px;
+      line-height: 1.5;
+      text-align: center;
+      padding: 10px 20px;
+    }
+    .beta-banner a {
+      color: #93c5fd;
+      font-weight: 600;
+      text-decoration: underline;
+      text-underline-offset: 2px;
+    }
+    .beta-banner a:hover { color: #bfdbfe; }
+
     /* ─── TOKENS ─── */
     :root {
       --bg:           #F7F7F5;
@@ -844,6 +861,12 @@ const OG_IMAGE  = `${SITE_URL}/og-image.png`; // создай og-image.png в /p
 </head>
 <body>
 
+  <!-- ═══ BETA BANNER ═══ -->
+  <div class="beta-banner">
+    🚧 Документация в бета — если что-то непонятно или нашли ошибку, уточняйте в
+    <a href={TELEGRAM_CHANNEL} target="_blank" rel="noopener">Telegram чате</a>.
+  </div>
+
   <!-- ═══ NAV (desktop only) ═══ -->
   <nav class="top-nav anim">
     <a href="/" class="nav-logo">
@@ -898,8 +921,8 @@ const OG_IMAGE  = `${SITE_URL}/og-image.png`; // создай og-image.png в /p
         </h1>
 
         <p class="hero-sub">
-          Характеристики, двигатели, обслуживание и типичные
-          проблемы седана BMW 1-й серии. Пополняется живым опытом владельцев.
+          Характеристики, двигатели, обслуживание и популярные вопросы
+          по седану BMW 1-й серии. Пополняется живым опытом владельцев.
         </p>
 
         <div class="hero-chips">

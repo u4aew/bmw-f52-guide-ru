@@ -16,6 +16,9 @@ export default defineConfig({
       title: 'BMW F52',
       description: 'База знаний по BMW 1 Series F52 Sedan.',
       favicon: '/favicon-32x32.png',
+      components: {
+        Banner: './src/components/Banner.astro',
+      },
       head: [
         {
           tag: 'script',
