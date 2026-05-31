@@ -62,6 +62,7 @@ export default defineConfig({
             { label: 'Сброс сервисного интервала', slug: 'service-reset' },
             { label: 'Совместимые запчасти', slug: 'parts-tips' },
             { label: 'Артикулы для ТО', slug: 'part-numbers' },
+            { label: 'Сервисный режим дворников', slug: 'wipers-service' },
           ],
         },
         {
