@@ -1306,13 +1306,68 @@ const OG_IMAGE  = `${SITE_URL}/og-image.jpg`;
       map.addChild(new YMapDefaultSchemeLayer({}));
       map.addChild(new YMapDefaultFeaturesLayer({}));
 
+      var activePopup = null;
+
+      document.addEventListener('click', function() {
+        if (activePopup) { map.removeChild(activePopup); activePopup = null; }
+      });
+
       YMAP_CITIES.forEach(function(city) {
-        var el = document.createElement('div');
-        el.style.cssText = 'width:12px;height:12px;background:#1d4ed8;border:2.5px solid #fff;border-radius:50%;box-shadow:0 1px 5px rgba(0,0,0,0.3);cursor:pointer;transition:transform 0.15s;';
-        el.title = city.name;
-        el.addEventListener('mouseenter', function() { el.style.transform = 'scale(1.5)'; });
-        el.addEventListener('mouseleave', function() { el.style.transform = 'scale(1)'; });
-        map.addChild(new YMapMarker({ coordinates: city.coords }, el));
+        // ── Dot ──
+        var dot = document.createElement('div');
+        dot.style.cssText = 'width:12px;height:12px;background:#1d4ed8;border:2.5px solid #fff;border-radius:50%;box-shadow:0 1px 5px rgba(0,0,0,0.3);cursor:pointer;transition:transform 0.15s;';
+        dot.addEventListener('mouseenter', function() { dot.style.transform = 'scale(1.5)'; });
+        dot.addEventListener('mouseleave', function() { dot.style.transform = 'scale(1)'; });
+
+        // ── Balloon element (lives in map coords via YMapMarker) ──
+        var balloonEl = document.createElement('div');
+        balloonEl.style.cssText = 'display:inline-block;cursor:default;';
+
+        var bubble = document.createElement('div');
+        bubble.textContent = city.name;
+        bubble.style.cssText = [
+          'background:#fff',
+          'border:1px solid rgba(0,0,0,0.08)',
+          'border-radius:10px',
+          'padding:7px 14px',
+          'font-size:13px',
+          'font-weight:600',
+          'color:#1e293b',
+          'white-space:nowrap',
+          'box-shadow:0 6px 20px rgba(0,0,0,0.12),0 2px 6px rgba(0,0,0,0.06)',
+          'font-family:inherit',
+        ].join(';');
+
+        var arrow = document.createElement('div');
+        arrow.style.cssText = [
+          'width:0',
+          'height:0',
+          'border-left:7px solid transparent',
+          'border-right:7px solid transparent',
+          'border-top:7px solid #fff',
+          'margin:0 auto',
+          'filter:drop-shadow(0 2px 2px rgba(0,0,0,0.06))',
+        ].join(';');
+
+        balloonEl.appendChild(bubble);
+        balloonEl.appendChild(arrow);
+
+        // anchor [0.5, 1] — bottom-center of element is at the coordinate point
+        var popupMarker = new YMapMarker({ coordinates: city.coords, anchor: [0.5, 1] }, balloonEl);
+
+        dot.addEventListener('click', function(e) {
+          e.stopPropagation();
+          if (activePopup === popupMarker) {
+            map.removeChild(activePopup);
+            activePopup = null;
+            return;
+          }
+          if (activePopup) map.removeChild(activePopup);
+          map.addChild(popupMarker);
+          activePopup = popupMarker;
+        });
+
+        map.addChild(new YMapMarker({ coordinates: city.coords, anchor: [0.5, 0.5] }, dot));
       });
     }
 
