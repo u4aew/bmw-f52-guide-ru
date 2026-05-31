@@ -1,0 +1,105 @@
+---
+title: "Сброс сервисного интервала"
+description: "Как сбросить индикатор сервисного обслуживания на BMW F52 (Service Due). Пошаговая инструкция через бортовой компьютер."
+---
+
+<style>{`
+  .steps {
+    list-style: none;
+    padding: 0;
+    margin: 24px 0 32px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .step {
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+    background: var(--sl-color-bg-sidebar);
+    border: 1px solid var(--sl-color-hairline-light);
+    border-radius: 10px;
+    padding: 14px 16px;
+  }
+  .step-num {
+    flex-shrink: 0;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: var(--sl-color-text-accent);
+    color: #fff;
+    font-size: 13px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 1px;
+  }
+  .step-text {
+    font-size: 14px;
+    line-height: 1.6;
+    color: var(--sl-color-text);
+  }
+  .step-text strong { color: var(--sl-color-text); }
+
+  .video-block {
+    margin: 24px 0 32px;
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid var(--sl-color-hairline-light);
+    background: var(--sl-color-bg-sidebar);
+  }
+  .video-block video {
+    width: 100%;
+    display: block;
+  }
+  .video-placeholder {
+    aspect-ratio: 16/9;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    color: var(--sl-color-gray-3);
+  }
+  .video-placeholder svg { width: 48px; height: 48px; opacity: 0.35; }
+  .video-placeholder span { font-size: 13px; opacity: 0.55; }
+`}</style>
+
+## Видео
+
+<div class="video-block">
+  <video controls playsinline preload="metadata">
+    <source src="/videos/service-reset.mp4" type="video/mp4" />
+  </video>
+</div>
+
+## Через бортовой компьютер (BC)
+
+<ol class="steps">
+  <li class="step">
+    <span class="step-num">1</span>
+    <span class="step-text">Включите зажигание (не заводя двигатель) или запустите автомобиль.</span>
+  </li>
+  <li class="step">
+    <span class="step-num">2</span>
+    <span class="step-text">На рычажке поворотника найдите кнопку бортового компьютера (BC) — нажмите её для входа в меню.</span>
+  </li>
+  <li class="step">
+    <span class="step-num">3</span>
+    <span class="step-text">Пролистайте до пункта <strong>«Техническое обслуживание»</strong> / <strong>Service</strong>.</span>
+  </li>
+  <li class="step">
+    <span class="step-num">4</span>
+    <span class="step-text">Удерживайте кнопку подтверждения <strong>3–5 секунд</strong> — появится запрос на сброс.</span>
+  </li>
+  <li class="step">
+    <span class="step-num">5</span>
+    <span class="step-text">Подтвердите сброс — счётчик обнулится до следующего интервала.</span>
+  </li>
+</ol>
+
+
+:::tip[Когда делать сброс]
+Сбрасывайте индикатор **сразу после замены масла** — до следующего запуска или в тот же день. Если сброс не сделан, машина продолжит отсчёт от старого интервала.
+:::
