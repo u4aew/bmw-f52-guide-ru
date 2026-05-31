@@ -3,7 +3,7 @@ import { defineConfig } from 'astro/config';
 import starlight from '@astrojs/starlight';
 import tailwindcss from '@tailwindcss/vite';
 
-const SITE = process.env.SITE ?? 'http://bmw-f52-guide.pro';
+const SITE = process.env.SITE ?? 'https://bmw-f52-guide.pro';
 const BASE = process.env.BASE ?? '';
 
 export default defineConfig({
@@ -45,6 +45,8 @@ export default defineConfig({
           label: '📐 Характеристики',
           items: [
             { label: 'Технические данные', slug: 'specs' },
+            { label: 'Комплектации', slug: 'trims' },
+            { label: 'Сход-развал', slug: 'alignment' },
           ],
         },
         {
@@ -57,6 +59,9 @@ export default defineConfig({
           label: '🔧 Обслуживание',
           items: [
             { label: 'Регламент ТО', slug: 'maintenance' },
+            { label: 'Сброс сервисного интервала', slug: 'service-reset' },
+            { label: 'Совместимые запчасти', slug: 'parts-tips' },
+            { label: 'Артикулы для ТО', slug: 'part-numbers' },
           ],
         },
         {
@@ -75,6 +80,17 @@ export default defineConfig({
           label: '🎛 Тюнинг',
           items: [
             { label: 'Доработки', slug: 'tuning' },
+          ],
+        },
+        {
+          label: '🌐 Прочее',
+          items: [
+            { label: 'Русификация', slug: 'russification' },
+            { label: 'Обогрев сидений', slug: 'heated-seats' },
+            { label: 'Круиз-контроль', slug: 'cruise-control' },
+            { label: 'Климат-контроль', slug: 'climate-control' },
+            { label: 'CarPlay', slug: 'carplay' },
+            { label: 'Фото владельцев', slug: 'owners-photos' },
           ],
         },
       ],
