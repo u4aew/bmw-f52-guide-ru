@@ -7,6 +7,9 @@ const TELEGRAM_CHANNEL = 'https://t.me/bmwf52chat';
 const DRIVE2 = 'https://www.drive2.ru/cars/bmw/1_series/g689165093270727703//';
 const GITHUB = 'https://github.com/u4aew/bmw-f52-guide-ru';
 
+// Yandex Maps API key — get free key at https://developer.tech.yandex.ru/
+const YANDEX_MAPS_KEY = import.meta.env.YANDEX_MAPS_KEY ?? 'YOUR_API_KEY_HERE';
+
 // SEO constants — update SITE_URL after deploy
 const SITE_URL  = 'https://bmw-f52-guide.pro';
 const SITE_NAME = 'BMW F52 — База знаний';
@@ -538,7 +541,7 @@ const OG_IMAGE  = `${SITE_URL}/og-image.jpg`;
     /* ─── DOCS SECTIONS GRID ─── */
     .docs-grid {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: repeat(2, 1fr);
       gap: 10px;
     }
 
@@ -857,7 +860,54 @@ const OG_IMAGE  = `${SITE_URL}/og-image.jpg`;
       .community-grid { grid-template-columns: 1fr; }
       .community-card:last-child { grid-column: auto; }
     }
+
+    /* ─── MAP SECTION ─── */
+    .map-section {
+      margin-top: 36px;
+    }
+
+    .map-wrap {
+      position: relative;
+      border-radius: var(--r-md);
+      overflow: hidden;
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow-sm);
+      height: 320px;
+    }
+
+    @media (max-width: 640px) {
+      .map-wrap { height: 240px; }
+    }
+
+    #ymap {
+      width: 100%;
+      height: 100%;
+    }
+
+    .map-overlay-badge {
+      position: absolute;
+      bottom: 12px;
+      left: 12px;
+      background: rgba(255,255,255,0.92);
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 8px 14px;
+      font-size: 12px;
+      color: var(--text-secondary);
+      pointer-events: none;
+      line-height: 1.5;
+    }
+
+    .map-overlay-badge strong {
+      display: block;
+      color: var(--text-primary);
+      font-size: 13px;
+    }
   </style>
+  <!-- Yandex Maps JS API v3 — loaded per official docs -->
+  <script src={`https://api-maps.yandex.ru/v3/?apikey=${YANDEX_MAPS_KEY}&lang=ru_RU`}></script>
 </head>
 <body>
 
@@ -1021,6 +1071,21 @@ const OG_IMAGE  = `${SITE_URL}/og-image.jpg`;
       </div>
     </section>
 
+    <!-- ── MAP SECTION ── -->
+    <div class="map-section anim anim-4">
+      <div class="sec-label">
+        <span class="sec-label-text">География владельцев</span>
+        <div class="sec-label-line"></div>
+      </div>
+      <div class="map-wrap">
+        <div id="ymap"></div>
+        <div class="map-overlay-badge">
+          <strong>Владельцы F52</strong>
+          от Калининграда до Владивостока
+        </div>
+      </div>
+    </div>
+
     <!-- ── COMMUNITY ── -->
     <div class="sec-label anim anim-5">
       <span class="sec-label-text">Сообщество</span>
@@ -1088,7 +1153,7 @@ const OG_IMAGE  = `${SITE_URL}/og-image.jpg`;
         </div>
         <div class="doc-card-content">
           <div class="doc-title">Характеристики</div>
-          <div class="doc-desc">Размеры, масса, динамика, трансмиссия</div>
+          <div class="doc-desc">Размеры, масса, динамика, комплектации</div>
         </div>
         <span class="doc-card-arrow mobile-only">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -1097,27 +1162,7 @@ const OG_IMAGE  = `${SITE_URL}/og-image.jpg`;
         </span>
       </a>
 
-      <!-- Двигатели -->
-      <a href="/engines/" class="doc-card">
-        <div class="doc-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
-            <rect x="3" y="3" width="18" height="18" rx="3"/>
-            <circle cx="12" cy="12" r="3"/>
-            <path d="M12 3v3M12 18v3M3 12h3M18 12h3"/>
-          </svg>
-        </div>
-        <div class="doc-card-content">
-          <div class="doc-title">Двигатели</div>
-          <div class="doc-desc">B38/B48 — ресурс, масло, проблемы</div>
-        </div>
-        <span class="doc-card-arrow mobile-only">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <polyline points="9 18 15 12 9 6"/>
-          </svg>
-        </span>
-      </a>
-
-      <!-- Обслуживание -->
+      <!-- Регламент ТО -->
       <a href="/maintenance/" class="doc-card">
         <div class="doc-icon">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
@@ -1125,8 +1170,8 @@ const OG_IMAGE  = `${SITE_URL}/og-image.jpg`;
           </svg>
         </div>
         <div class="doc-card-content">
-          <div class="doc-title">Обслуживание</div>
-          <div class="doc-desc">Регламент, интервалы, допуски масел</div>
+          <div class="doc-title">Регламент ТО</div>
+          <div class="doc-desc">Интервалы, артикулы, допуски масел</div>
         </div>
         <span class="doc-card-arrow mobile-only">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -1135,7 +1180,7 @@ const OG_IMAGE  = `${SITE_URL}/og-image.jpg`;
         </span>
       </a>
 
-      <!-- Вопросы -->
+      <!-- Популярные вопросы -->
       <a href="/questions/" class="doc-card">
         <div class="doc-icon">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
@@ -1146,7 +1191,7 @@ const OG_IMAGE  = `${SITE_URL}/og-image.jpg`;
         </div>
         <div class="doc-card-content">
           <div class="doc-title">Популярные вопросы</div>
-          <div class="doc-desc">Масло, расход, обслуживание, покупка</div>
+          <div class="doc-desc">Зеркала, фары, датчики, запчасти</div>
         </div>
         <span class="doc-card-arrow mobile-only">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -1155,36 +1200,17 @@ const OG_IMAGE  = `${SITE_URL}/og-image.jpg`;
         </span>
       </a>
 
-      <!-- Покупка -->
-      <a href="/buying/" class="doc-card">
+      <!-- Прочее -->
+      <a href="/russification/" class="doc-card">
         <div class="doc-icon">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
-            <circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/>
-            <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/>
+            <circle cx="12" cy="12" r="10"/>
+            <path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
           </svg>
         </div>
         <div class="doc-card-content">
-          <div class="doc-title">Покупка</div>
-          <div class="doc-desc">На что смотреть при выборе б/у F52</div>
-        </div>
-        <span class="doc-card-arrow mobile-only">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <polyline points="9 18 15 12 9 6"/>
-          </svg>
-        </span>
-      </a>
-
-      <!-- Тюнинг -->
-      <a href="/tuning/" class="doc-card">
-        <div class="doc-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
-            <circle cx="12" cy="12" r="3"/>
-            <path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/>
-          </svg>
-        </div>
-        <div class="doc-card-content">
-          <div class="doc-title">Тюнинг и допы</div>
-          <div class="doc-desc">Доработки, прошивки, улучшения</div>
+          <div class="doc-title">Прочее</div>
+          <div class="doc-desc">Круиз, климат, CarPlay, обогрев, русификация</div>
         </div>
         <span class="doc-card-arrow mobile-only">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -1216,7 +1242,7 @@ const OG_IMAGE  = `${SITE_URL}/og-image.jpg`;
           <rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/>
         </svg>
       </span>
-      <span class="tab-label">Комплектации</span>
+      <span class="tab-label">Документация</span>
     </a>
 
     <a href={TELEGRAM_CHANNEL} target="_blank" rel="noopener" class="tab-item tab-item-tg">
@@ -1246,6 +1272,52 @@ const OG_IMAGE  = `${SITE_URL}/og-image.jpg`;
       <span class="tab-label">GitHub</span>
     </a>
   </nav>
+
+  <!-- ═══ YANDEX MAPS ═══ -->
+  <script is:inline>
+    // Coords: [longitude, latitude] — ymaps3 v3 format
+    var YMAP_CITIES = [
+      { name: 'Москва',          coords: [37.6173, 55.7558] },
+      { name: 'Санкт-Петербург', coords: [30.3158, 59.9390] },
+      { name: 'Сочи',            coords: [39.7257, 43.5855] },
+      { name: 'Новосибирск',     coords: [82.9057, 54.9893] },
+      { name: 'Барнаул',         coords: [83.7697, 53.3548] },
+      { name: 'Бийск',           coords: [85.9602, 52.5390] },
+      { name: 'Екатеринбург',    coords: [60.6057, 56.8389] },
+      { name: 'Казань',          coords: [49.1064, 55.7961] },
+    ];
+
+    async function initYMap() {
+      if (!document.getElementById('ymap')) return;
+      await ymaps3.ready;
+
+      var YMap                 = ymaps3.YMap;
+      var YMapDefaultSchemeLayer   = ymaps3.YMapDefaultSchemeLayer;
+      var YMapDefaultFeaturesLayer = ymaps3.YMapDefaultFeaturesLayer;
+      var YMapMarker           = ymaps3.YMapMarker;
+
+      var map = new YMap(
+        document.getElementById('ymap'),
+        {
+          location: { center: [65.0, 58.0], zoom: 3 },
+        }
+      );
+
+      map.addChild(new YMapDefaultSchemeLayer({}));
+      map.addChild(new YMapDefaultFeaturesLayer({}));
+
+      YMAP_CITIES.forEach(function(city) {
+        var el = document.createElement('div');
+        el.style.cssText = 'width:12px;height:12px;background:#1d4ed8;border:2.5px solid #fff;border-radius:50%;box-shadow:0 1px 5px rgba(0,0,0,0.3);cursor:pointer;transition:transform 0.15s;';
+        el.title = city.name;
+        el.addEventListener('mouseenter', function() { el.style.transform = 'scale(1.5)'; });
+        el.addEventListener('mouseleave', function() { el.style.transform = 'scale(1)'; });
+        map.addChild(new YMapMarker({ coordinates: city.coords }, el));
+      });
+    }
+
+    initYMap();
+  </script>
 
 </body>
 </html>
