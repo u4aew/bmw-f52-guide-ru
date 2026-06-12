@@ -31,8 +31,9 @@ for (const { name, size } of sizes) {
 // Generate favicon.ico using to-ico (proper ICO format)
 const ico16 = await sharp(svgBuffer).resize(16, 16).png().toBuffer();
 const ico32 = await sharp(svgBuffer).resize(32, 32).png().toBuffer();
-const icoBuffer = await toIco([ico16, ico32]);
+const ico48 = await sharp(svgBuffer).resize(48, 48).png().toBuffer();
+const icoBuffer = await toIco([ico16, ico32, ico48]);
 writeFileSync(join(root, 'public', 'favicon.ico'), icoBuffer);
-console.log('✓ favicon.ico (16+32)');
+console.log('✓ favicon.ico (16+32+48)');
 
 console.log('🎨 Favicons ready!');
