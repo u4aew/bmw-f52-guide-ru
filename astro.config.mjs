@@ -2,6 +2,7 @@
 import { defineConfig } from 'astro/config';
 import starlight from '@astrojs/starlight';
 import tailwindcss from '@tailwindcss/vite';
+import rehypeExternalLinks from 'rehype-external-links';
 
 const SITE = process.env.SITE ?? 'https://bmw-f52-guide.pro';
 const BASE = process.env.BASE ?? '';
@@ -10,6 +11,12 @@ export default defineConfig({
   site: SITE,
   base: BASE,
   output: 'static',
+
+  markdown: {
+    rehypePlugins: [
+      [rehypeExternalLinks, { target: '_blank', rel: ['noopener', 'noreferrer'] }],
+    ],
+  },
 
   integrations: [
     starlight({
@@ -39,6 +46,8 @@ export default defineConfig({
           label: '🚗 Начало',
           items: [
             { label: 'Главная', slug: '' },
+            { label: 'Руководство (оригинал)', slug: 'manual' },
+            { label: 'Руководство (русский) β', slug: 'manual-ru' },
           ],
         },
         {
@@ -63,6 +72,7 @@ export default defineConfig({
             { label: 'Совместимые запчасти', slug: 'parts-tips' },
             { label: 'Артикулы для ТО', slug: 'part-numbers' },
             { label: 'Сервисный режим дворников', slug: 'wipers-service' },
+            { label: 'Замена аккумулятора', slug: 'battery' },
           ],
         },
         {
@@ -75,6 +85,7 @@ export default defineConfig({
           label: '🛒 Покупка',
           items: [
             { label: 'Как выбрать б/у', slug: 'buying' },
+            { label: 'Расходы на ТО', slug: 'costs' },
           ],
         },
         {
@@ -87,10 +98,12 @@ export default defineConfig({
           label: '🌐 Прочее',
           items: [
             { label: 'Русификация', slug: 'russification' },
+            { label: 'Смена языка (CN → EN)', slug: 'language-switch' },
             { label: 'Обогрев сидений', slug: 'heated-seats' },
             { label: 'Круиз-контроль', slug: 'cruise-control' },
             { label: 'Климат-контроль', slug: 'climate-control' },
             { label: 'CarPlay', slug: 'carplay' },
+            { label: 'Механический ключ из брелка', slug: 'key-mecha' },
             { label: 'Фото владельцев', slug: 'owners-photos' },
           ],
         },

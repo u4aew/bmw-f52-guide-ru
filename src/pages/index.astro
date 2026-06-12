@@ -6,6 +6,7 @@ import introImg from '../assets/intro.png';
 const TELEGRAM_CHANNEL = 'https://t.me/bmwf52chat';
 const DRIVE2 = 'https://www.drive2.ru/cars/bmw/1_series/g689165093270727703//';
 const GITHUB = 'https://github.com/u4aew/bmw-f52-guide-ru';
+const AUTORU = 'https://auto.ru/logbook/cars/bmw/1er/23742578/';
 
 // Yandex Maps API key — get free key at https://developer.tech.yandex.ru/
 const YANDEX_MAPS_KEY = import.meta.env.YANDEX_MAPS_KEY ?? 'YOUR_API_KEY_HERE';
@@ -51,13 +52,17 @@ const OG_IMAGE  = `${SITE_URL}/og-image.jpg`;
   <meta name="twitter:image"       content={OG_IMAGE} />
 
   <!-- ── Favicon ── -->
+  <link rel="icon" href="/favicon.ico" type="image/x-icon" />
+  <link rel="shortcut icon" href="/favicon.ico" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png" />
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
   <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
-  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+  <link rel="manifest" href="/site.webmanifest" />
 
   <!-- ── PWA / mobile ── -->
-  <meta name="theme-color" content="#ffffff" />
+  <meta name="theme-color" content="#1d4ed8" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="default" />
   <meta name="apple-mobile-web-app-title" content="BMW F52" />
@@ -1088,14 +1093,14 @@ const OG_IMAGE  = `${SITE_URL}/og-image.jpg`;
         <div id="ymap"></div>
         <div class="map-overlay-badge">
           <strong>Владельцы F52</strong>
-          от Калининграда до Владивостока
+          <span id="city-count">40+ городов</span> — от Калининграда до Владивостока
         </div>
       </div>
       <div class="map-cities-text">
         Москва, Санкт-Петербург, Сочи, Новосибирск, Барнаул, Бийск, Екатеринбург, Казань,
         Тюмень, Пермь, Красноярск, Иркутск, Иваново, Уфа, Рязань, Великий Новгород,
         Краснодар, Мурманск, Севастополь, Ростов-на-Дону, Челябинск, Нижний Новгород,
-        Волгоград, Калининград, Оренбург, Хабаровск, Серпухов, Сыктывкар, Сургут, Липецк, Тверь, Омск и другие...
+        Волгоград, Калининград, Оренбург, Хабаровск, Серпухов, Сыктывкар, Сургут, Липецк, Тверь, Омск, Пенза, Подольск, Солнечное, Саратов, Энгельс, Салехард, Майкоп, Березники, Самара, Махачкала и другие...
       </div>
     </div>
 
@@ -1131,6 +1136,20 @@ const OG_IMAGE  = `${SITE_URL}/og-image.jpg`;
         <div>
           <div class="c-title">Drive2</div>
           <div class="c-desc">Бортовые журналы, живой опыт владельцев F52</div>
+        </div>
+        <span class="c-arrow">→</span>
+      </a>
+
+      <!-- Auto.ru -->
+      <a href={AUTORU} target="_blank" rel="noopener" class="community-card">
+        <div class="c-icon c-icon-d2">
+          <svg viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14H9V8h2v8zm4 0h-2V8h2v8z"/>
+          </svg>
+        </div>
+        <div>
+          <div class="c-title">Auto.ru</div>
+          <div class="c-desc">Бортовой журнал владельца F52</div>
         </div>
         <span class="c-arrow">→</span>
       </a>
@@ -1322,7 +1341,26 @@ const OG_IMAGE  = `${SITE_URL}/og-image.jpg`;
       { name: 'Липецк',           coords: [39.5975, 52.6031] },
       { name: 'Тверь',            coords: [35.9006, 56.8587] },
       { name: 'Омск',             coords: [73.3645, 54.9914] },
+      { name: 'Пенза',           coords: [45.0047, 53.1953] },
+      { name: 'Подольск',        coords: [37.5467, 55.4311] },
+      { name: 'Солнечное',       coords: [29.9333, 60.1479] },
+      { name: 'Саратов',         coords: [46.0343, 51.5336] },
+      { name: 'Энгельс',         coords: [46.1242, 51.4985] },
+      { name: 'Салехард',        coords: [66.6000, 66.5333] },
+      { name: 'Майкоп',          coords: [40.1069, 44.6098] },
+      { name: 'Березники',       coords: [56.7731, 59.4093] },
+      { name: 'Самара',          coords: [50.1500, 53.2001] },
+      { name: 'Махачкала',       coords: [47.5047, 42.9849] },
     ];
+
+    var cityCountEl = document.getElementById('city-count');
+    if (cityCountEl) {
+      var n = YMAP_CITIES.length;
+      var word = (n % 10 === 1 && n % 100 !== 11) ? 'город'
+        : (n % 10 >= 2 && n % 10 <= 4 && (n % 100 < 12 || n % 100 > 14)) ? 'города'
+        : 'городов';
+      cityCountEl.textContent = n + ' ' + word;
+    }
 
     async function initYMap() {
       if (!document.getElementById('ymap')) return;

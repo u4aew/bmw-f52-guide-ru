@@ -1,0 +1,14 @@
+{
+  "name": "BMW F52 База знаний",
+  "short_name": "BMW F52",
+  "description": "База знаний по BMW 1 Series F52 Sedan",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#1d4ed8",
+  "icons": [
+    { "src": "/favicon-96x96.png", "sizes": "96x96", "type": "image/png" },
+    { "src": "/icon-192x192.png",  "sizes": "192x192", "type": "image/png" },
+    { "src": "/icon-512x512.png",  "sizes": "512x512", "type": "image/png" }
+  ]
+}

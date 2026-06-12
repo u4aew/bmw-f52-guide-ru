@@ -1,0 +1,61 @@
+---
+title: "Руководство пользователя (оригинал)"
+description: "Оригинальное руководство пользователя BMW F52 на китайском — онлайн просмотр и скачивание."
+---
+
+<style>{`
+  .manual-meta {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 16px;
+    flex-wrap: wrap;
+  }
+  .manual-download {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 16px;
+    background: var(--sl-color-accent);
+    color: #fff !important;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 14px;
+    text-decoration: none !important;
+  }
+  .manual-download:hover { opacity: 0.9; }
+  .manual-hint { font-size: 13px; color: var(--sl-color-gray-2); }
+  .manual-viewer {
+    width: 100%;
+    height: 80vh;
+    min-height: 500px;
+    border: 1px solid var(--sl-color-hairline-light);
+    border-radius: 10px;
+    overflow: hidden;
+  }
+  .manual-mobile {
+    display: none;
+    padding: 24px;
+    text-align: center;
+    background: var(--sl-color-bg-sidebar);
+    border: 1px solid var(--sl-color-hairline-light);
+    border-radius: 10px;
+  }
+  .manual-mobile p { margin: 0 0 16px; color: var(--sl-color-gray-2); font-size: 14px; }
+  @media (max-width: 640px) {
+    .manual-viewer { display: none; }
+    .manual-mobile { display: block; }
+  }
+`}</style>
+
+<div class="manual-meta">
+  <a class="manual-download" href="/docs/bmw-f52-manual.pdf" download="bmw-f52-manual.pdf">⬇ Скачать PDF</a>
+  <span class="manual-hint">54 стр. · 5.2 МБ</span>
+</div>
+
+<iframe class="manual-viewer" src="/docs/bmw-f52-manual.pdf" title="BMW F52 Manual" />
+
+<div class="manual-mobile">
+  <p>Встроенный просмотр не поддерживается на мобильных устройствах.</p>
+  <a class="manual-download" href="/docs/bmw-f52-manual.pdf" download="bmw-f52-manual.pdf">⬇ Скачать PDF</a>
+</div>
